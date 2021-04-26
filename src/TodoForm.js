@@ -1,9 +1,25 @@
-import React from 'react';
-const TodoForm = () => {
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
+ 
+const TodoForm = (props) => {
+  const [todo, setTodo] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(todo)
+    // I want to dispatch an action
+    // {type: 'ADD_TODO', todo: todo}
+    props.dispatch({type: 'ADD_TODO', todo: todo})
+    setTodo('')
+  }
+
   return (
     <div>
-      Form
+      <h1>Add Todo</h1>
+      <form onSubmit={handleSubmit}>
+        <input value={todo} onChange={(e) => setTodo(e.target.value)} />
+      </form>
     </div>
   )
 }
-export default TodoForm;
+export default connect()(TodoForm);
