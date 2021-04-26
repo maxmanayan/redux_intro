@@ -1,9 +1,18 @@
 import React from 'react';
-const Footer = () => {
+import {connect} from "react-redux";
+
+const Footer = (props) => {
+
+  const setFilter = (filter) => {
+    props.dispatch({type: 'SET_FILTER', filter: filter})
+  }
   return (
     <div>
-      Footer
+      <div onClick={() => setFilter('all')}>all</div>
+      <div onClick={() => setFilter('completed')}>completed</div>
+      <div onClick={() => setFilter('incomplete')}>incomplete</div>
     </div>
   )
 }
-export default Footer;
+
+export default connect()(Footer);

@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
 import todos from "./todos";
 import nextID from "./nextID";
+import filter from "./filter";
 
 
 const rootReducer = combineReducers({
   todos,
-  nextID
+  nextID,
+  filter,
   // add other reducers
 })
 
