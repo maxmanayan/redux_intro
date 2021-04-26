@@ -9,7 +9,8 @@ const TodoForm = (props) => {
     console.log(todo)
     // I want to dispatch an action
     // {type: 'ADD_TODO', todo: todo}
-    props.dispatch({type: 'ADD_TODO', todo: todo})
+    props.dispatch({type: 'ADD_TODO', todo: {id: props.id, name: todo, complete: false}})
+    props.dispatch({type: "INC_ID"})
     setTodo('')
   }
 
@@ -22,4 +23,9 @@ const TodoForm = (props) => {
     </div>
   )
 }
-export default connect()(TodoForm);
+
+const mapStateToProps = (state) => {
+  return {id: state.nextID}
+}
+
+export default connect(mapStateToProps)(TodoForm);
