@@ -6,13 +6,26 @@ const Footer = (props) => {
   const setFilter = (filter) => {
     props.dispatch({type: 'SET_FILTER', filter: filter})
   }
+
+  const getStyle = (filter) => {
+    if( props.filter === filter ){
+      return {color: 'blue'}
+    } else {
+      return {}
+    }
+  }
+
   return (
     <div>
-      <div onClick={() => setFilter('all')}>all</div>
-      <div onClick={() => setFilter('completed')}>completed</div>
-      <div onClick={() => setFilter('incomplete')}>incomplete</div>
+      <div style={getStyle('all')} onClick={() => setFilter('all')}>all</div>
+      <div style={getStyle('completed')} onClick={() => setFilter('completed')}>completed</div>
+      <div style={getStyle('incomplete')} onClick={() => setFilter('incomplete')}>incomplete</div>
     </div>
   )
 }
 
-export default connect()(Footer);
+const mapStateToProps = (state) => {
+  return {filter: state.filter}
+}
+
+export default connect(mapStateToProps)(Footer);
